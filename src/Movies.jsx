@@ -7,8 +7,8 @@ function Movies({ movies }) {
         <div className="card" key={index}>
           <img src={movie.Poster} alt="img" />
           <div className="title">
-            <h3>{movie.Title}</h3>
-            <p>{movie.Year}</p>
+            <h3>{movie.Title.length<18?movie.Title:movie.Title.slice(0,17)+'...'}</h3>
+            <button className='button'>Want To Watch</button>
           </div>
         </div>
       )}
