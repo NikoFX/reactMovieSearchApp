@@ -19,11 +19,15 @@ function App() {
   }, [search])
 
   const addToList = (movie) => {
-    setMovieList(movieList => {
-      let arr = [...movieList]
-      arr.push(movie)
-      return arr
-    })
+    if (movieList.find(item => item.Title === movie.Title)) {
+      return null
+    } else {
+      setMovieList(movieList => {
+        let arr = [...movieList]
+        arr.push(movie)
+        return arr
+      })
+    }
   }
 
   const removeFromList = (movieIndex) => {
