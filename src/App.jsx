@@ -18,7 +18,7 @@ function App() {
       })
   }, [search])
 
-  const movieClick = (movie) => {
+  const addToList = (movie) => {
     setMovieList(movieList => {
       let arr = [...movieList]
       arr.push(movie)
@@ -26,14 +26,22 @@ function App() {
     })
   }
 
+  const removeFromList = (movieIndex) => {
+    setMovieList(movieList => {
+      let arr = [...movieList]
+      arr.splice(movieIndex, 1)
+      return arr
+    })
+  }
+
   return (
     <>
-      {movieList.length > 0 ? <Basket movieList={movieList} /> : null}
+      {movieList.length > 0 ? <Basket movieList={movieList} removeFromList={removeFromList} /> : null}
       <nav>
         <input type="text" onInput={(e) => setSearch(e.target.value)} placeholder='search...' />
       </nav>
       <div className="wrapper">
-        {status ? (dataApi.Response === 'True' ? <Movies movies={dataApi.Search} movieClick={movieClick} /> : <h2>{dataApi.Error}</h2>) : null}
+        {status ? (dataApi.Response === 'True' ? <Movies movies={dataApi.Search} addToList={addToList} /> : <h2>{dataApi.Error}</h2>) : null}
       </div>
     </>
   )

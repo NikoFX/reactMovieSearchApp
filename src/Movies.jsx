@@ -1,6 +1,6 @@
 import React from 'react'
 
-function Movies({ movies, movieClick }) {
+function Movies({ movies, addToList }) {
   return (
     <>
       {movies.map((movie, index) =>
@@ -8,7 +8,7 @@ function Movies({ movies, movieClick }) {
           <img src={movie.Poster} alt="img" />
           <div className="title">
             <h3>{movie.Title.length < 18 ? movie.Title : movie.Title.slice(0, 17) + '...'}</h3>
-            <button className='button' onClick={() => movieClick(movie)}>Want To Watch</button>
+            <button className='button' onClick={() => addToList(movie)}>Want To Watch</button>
           </div>
         </div>
       )}
